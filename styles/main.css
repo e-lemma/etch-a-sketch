@@ -16,6 +16,7 @@ body {
   height: 600px;
   margin: 0;
   padding: 0;
+  border: solid black;
   box-sizing: border-box;
 }
 
@@ -23,4 +24,16 @@ body {
   border: solid 1px;
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
+}
+
+div#buttons button {
+  border-radius: 8px;
+}
+
+div#buttons {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 5px;
+  margin: 10px;
 }
