@@ -31,6 +31,8 @@ function getGridDimensions() {
     if (selectedDimension > MAX_GRID_WIDTH_HEIGHT) {
       alert("Too large. Pick a width/height under 100 blocks.");
       continue;
+    } else if (!selectedDimension) {
+      return DEFAULT_GRID_WIDTH_HEIGHT;
     }
     return parseInt(selectedDimension);
   }
