@@ -38,11 +38,17 @@ function getGridDimensions() {
   }
 }
 
-const button = document.querySelector("#grid-generator");
-button.addEventListener("click", () => {
+const gridGenBtn = document.querySelector("#grid-generator");
+gridGenBtn.addEventListener("click", () => {
   chosenDimension = getGridDimensions();
 
   createGrid(chosenDimension);
+});
+
+const resetBtn = document.querySelector("#reset");
+resetBtn.addEventListener("click", () => {
+  const gridBoxes = document.querySelectorAll(".grid-element");
+  gridBoxes.forEach((box) => (box.style.backgroundColor = ""));
 });
 
 createGrid();
