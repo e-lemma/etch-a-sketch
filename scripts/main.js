@@ -20,6 +20,7 @@ function createGrid(chosenDimension = 16) {
 function addLingeringHoverEffect(element) {
   element.addEventListener("mouseover", () => {
     element.style.backgroundColor = "green";
+    element.style.border = "0px";
   });
 }
 
@@ -50,6 +51,7 @@ const resetBtn = document.querySelector("#reset");
 resetBtn.addEventListener("click", () => {
   const gridBoxes = document.querySelectorAll(".grid-element");
   gridBoxes.forEach((box) => (box.style.backgroundColor = "#ececec"));
+  gridBoxes.forEach((box) => (box.style.border = "solid 1px #e5e5e5"));
 });
 
 createGrid();
