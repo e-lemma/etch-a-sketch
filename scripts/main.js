@@ -5,10 +5,16 @@ function createGrid() {
 
   for (let i = 0; i < SIZE_OF_GRID; i++) {
     const div = document.createElement("div");
-    div.textContent = "x";
     div.classList.add("grid-element");
+    addLingeringHoverEffect(div);
     container.appendChild(div);
   }
+}
+
+function addLingeringHoverEffect(element) {
+  element.addEventListener("mouseover", () => {
+    element.style.backgroundColor = "green";
+  });
 }
 
 createGrid();
