@@ -10,6 +10,7 @@ function createGrid(chosenDimension = 16) {
   for (let i = 0; i < chosenDimension * chosenDimension; i++) {
     const div = document.createElement("div");
     div.classList.add("grid-element");
+    div.style.backgroundColor = "#ececec";
     div.style.width = `calc(100% / ${chosenDimension})`;
     addLingeringHoverEffect(div);
     container.appendChild(div);
@@ -48,7 +49,7 @@ gridGenBtn.addEventListener("click", () => {
 const resetBtn = document.querySelector("#reset");
 resetBtn.addEventListener("click", () => {
   const gridBoxes = document.querySelectorAll(".grid-element");
-  gridBoxes.forEach((box) => (box.style.backgroundColor = ""));
+  gridBoxes.forEach((box) => (box.style.backgroundColor = "#ececec"));
 });
 
 createGrid();
