@@ -107,7 +107,7 @@ resetBtn.addEventListener("click", () => {
     (box) => (
       (box.style.backgroundColor = DEFAULT_BACKGROUND),
       (box.style.border = DEFAULT_BORDER),
-      (box.style.opacity = "")
+      (box.style.opacity = "") // Remove opacity when resetting
     )
   );
 });
