@@ -12,12 +12,12 @@ function createGrid(chosenDimension = 16) {
     div.classList.add("grid-element");
     div.style.backgroundColor = "#ececec";
     div.style.width = `calc(100% / ${chosenDimension})`;
-    addLingeringHoverEffect(div);
+    addDrawBehavior(div);
     container.appendChild(div);
   }
 }
 
-function addLingeringHoverEffect(element) {
+function addDrawBehavior(element) {
   element.addEventListener("mouseover", () => {
     element.style.backgroundColor = "green";
     element.style.border = "0px";
