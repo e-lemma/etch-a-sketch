@@ -30,6 +30,7 @@ button {
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
 }
+
 #buttons {
   display: flex;
   justify-content: center;
