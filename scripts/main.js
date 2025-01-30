@@ -19,9 +19,11 @@ function createGrid(chosenDimension = 16) {
 }
 
 function addDrawBehavior(element) {
-  element.addEventListener("mouseover", () => {
-    element.style.backgroundColor = "green";
-    element.style.border = "0px";
+  element.addEventListener("mouseover", (e) => {
+    if (e.buttons === 1) {
+      element.style.backgroundColor = "green";
+      element.style.border = "0px";
+    }
   });
 }
 
