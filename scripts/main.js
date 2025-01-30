@@ -46,6 +46,13 @@ function addDrawBehavior(element) {
             .toString(16)
             .padStart(6, "0");
       } else {
+        // get current opacity, or set it to the default of 0
+        let opacity = parseFloat(element.style.opacity) || 0;
+
+        // Add to it each time to create a 'shading' effect when drawing
+        opacity = Math.min(opacity + 0.25, 1);
+        element.style.opacity = opacity;
+
         element.style.backgroundColor = currentColor;
         element.style.border = "0px";
       }
@@ -99,7 +106,8 @@ resetBtn.addEventListener("click", () => {
   gridBoxes.forEach(
     (box) => (
       (box.style.backgroundColor = DEFAULT_BACKGROUND),
-      (box.style.border = DEFAULT_BORDER)
+      (box.style.border = DEFAULT_BORDER),
+      (box.style.opacity = "")
     )
   );
 });
