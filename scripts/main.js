@@ -26,7 +26,7 @@ function addDrawBehavior(element) {
 
 function getGridDimensions() {
   while (true) {
-    selectedDimension = prompt(
+    let selectedDimension = prompt(
       "How many blocks wide and long should the grid be?"
     );
 
@@ -42,7 +42,7 @@ function getGridDimensions() {
 
 const gridGenBtn = document.querySelector("#grid-generator");
 gridGenBtn.addEventListener("click", () => {
-  chosenDimension = getGridDimensions();
+  let chosenDimension = getGridDimensions();
 
   createGrid(chosenDimension);
 });
