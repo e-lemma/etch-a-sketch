@@ -13,16 +13,36 @@ function createGrid(chosenDimension = 16) {
     div.classList.add("grid-element");
     div.style.backgroundColor = "#ececec";
     div.style.width = `calc(100% / ${chosenDimension})`;
-    addDrawBehavior(div);
+    addDrawBehavior(div, currentColor);
     container.appendChild(div);
   }
 }
 
-function addDrawBehavior(element) {
+function getColorChoice() {
+  while (true) {
+    let color = prompt(
+      "Choose a color: Red, Green, Blue, or Rainbow!"
+    ).toLowerCase();
+    if (["red", "green", "blue", "rainbow"].includes(color)) {
+      return color;
+    }
+    alert("Please choose either Red, Green, Blue, or Rainbow");
+  }
+}
+
+function addDrawBehavior(element, color) {
   element.addEventListener("mouseover", (e) => {
     if (e.buttons === 1) {
-      element.style.backgroundColor = "green";
-      element.style.border = "0px";
+      if (color === "rainbow") {
+        element.style.backgroundColor =
+          "#" +
+          Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, "0");
+      } else {
+        element.style.backgroundColor = color;
+        element.style.border = "0px";
+      }
     }
   });
 }
@@ -57,6 +77,9 @@ function getGridSize() {
   }
 }
 
+let currentColor = getColorChoice();
+let currentGridSize = getGridSize();
+
 const gridGenBtn = document.querySelector("#grid-generator");
 gridGenBtn.addEventListener("click", () => {
   let chosenDimension = getGridSize();
@@ -69,6 +92,12 @@ resetBtn.addEventListener("click", () => {
   const gridBoxes = document.querySelectorAll(".grid-element");
   gridBoxes.forEach((box) => (box.style.backgroundColor = "#ececec"));
   gridBoxes.forEach((box) => (box.style.border = "solid 1px #e5e5e5"));
+});
+
+const colorSelectBtn = document.querySelector("#color-selector");
+colorSelectBtn.addEventListener("click", () => {
+  currentColor = getColorChoice();
+  createGrid(currentGridSize);
 });
 
 createGrid();
