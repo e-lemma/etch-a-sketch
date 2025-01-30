@@ -2,6 +2,11 @@ const MAX_GRID_SIZE = 100;
 const MIN_GRID_SIZE = 1;
 const DEFAULT_GRID_SIZE = 16;
 
+const DEFAULT_COLOR = "red";
+const VALID_COLORS = ["red", "green", "blue", "rainbow"];
+const DEFAULT_BACKGROUND = "#ececec";
+const DEFAULT_BORDER = "solid 1px #e5e5e5";
+
 function createGrid(chosenDimension = 16) {
   const container = document.querySelector(".container");
 
@@ -11,7 +16,7 @@ function createGrid(chosenDimension = 16) {
   for (let i = 0; i < chosenDimension * chosenDimension; i++) {
     const div = document.createElement("div");
     div.classList.add("grid-element");
-    div.style.backgroundColor = "#ececec";
+    div.style.backgroundColor = DEFAULT_BACKGROUND;
     div.style.width = `calc(100% / ${chosenDimension})`;
     addDrawBehavior(div, currentColor);
     container.appendChild(div);
@@ -23,24 +28,24 @@ function getColorChoice() {
     let color = prompt(
       "Choose a color: Red, Green, Blue, or Rainbow!"
     ).toLowerCase();
-    if (["red", "green", "blue", "rainbow"].includes(color)) {
+    if (VALID_COLORS.includes(color)) {
       return color;
     }
     alert("Please choose either Red, Green, Blue, or Rainbow");
   }
 }
 
-function addDrawBehavior(element, color) {
+function addDrawBehavior(element) {
   element.addEventListener("mouseover", (e) => {
     if (e.buttons === 1) {
-      if (color === "rainbow") {
+      if (currentColor === "rainbow") {
         element.style.backgroundColor =
           "#" +
           Math.floor(Math.random() * 16777215)
             .toString(16)
             .padStart(6, "0");
       } else {
-        element.style.backgroundColor = color;
+        element.style.backgroundColor = currentColor;
         element.style.border = "0px";
       }
     }
@@ -77,27 +82,30 @@ function getGridSize() {
   }
 }
 
-let currentColor = getColorChoice();
-let currentGridSize = getGridSize();
+let currentColor = DEFAULT_COLOR;
+let currentGridSize = DEFAULT_GRID_SIZE;
 
 const gridGenBtn = document.querySelector("#grid-generator");
 gridGenBtn.addEventListener("click", () => {
-  let chosenDimension = getGridSize();
+  currentGridSize = getGridSize();
 
-  createGrid(chosenDimension);
+  createGrid(currentGridSize);
 });
 
 const resetBtn = document.querySelector("#reset");
 resetBtn.addEventListener("click", () => {
   const gridBoxes = document.querySelectorAll(".grid-element");
-  gridBoxes.forEach((box) => (box.style.backgroundColor = "#ececec"));
-  gridBoxes.forEach((box) => (box.style.border = "solid 1px #e5e5e5"));
+  gridBoxes.forEach(
+    (box) => (
+      (box.style.backgroundColor = DEFAULT_BACKGROUND),
+      (box.style.border = DEFAULT_BORDER)
+    )
+  );
 });
 
 const colorSelectBtn = document.querySelector("#color-selector");
 colorSelectBtn.addEventListener("click", () => {
   currentColor = getColorChoice();
-  createGrid(currentGridSize);
 });
 
 createGrid();
