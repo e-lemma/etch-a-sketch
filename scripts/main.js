@@ -1,6 +1,6 @@
-const MAX_GRID_WIDTH_HEIGHT = 100;
-const MIN_GRID_WIDTH_HEIGHT = 1;
-const DEFAULT_GRID_WIDTH_HEIGHT = 16;
+const MAX_GRID_SIZE = 100;
+const MIN_GRID_SIZE = 1;
+const DEFAULT_GRID_SIZE = 16;
 
 function createGrid(chosenDimension = 16) {
   const container = document.querySelector(".container");
@@ -25,43 +25,39 @@ function addDrawBehavior(element) {
   });
 }
 
-function getGridDimensions() {
+function getGridSize() {
   while (true) {
-    let selectedDimension = prompt(
-      "How many blocks wide and long should the grid be?",
-      DEFAULT_GRID_WIDTH_HEIGHT
+    let gridSize = prompt(
+      "Enter a grid size (e.g 16 creates a grid of 16x16)",
+      DEFAULT_GRID_SIZE
     );
 
     // NaN if a non-number is provided
-    selectedDimension = parseInt(selectedDimension);
+    gridSize = parseInt(gridSize);
 
-    if (typeof selectedDimension !== "number" || isNaN(selectedDimension)) {
+    if (typeof gridSize !== "number" || isNaN(gridSize)) {
       alert(
-        "That is not a valid number. Please pick a number between 1 and 100."
+        "That is not a valid grid size. Please pick a number between 1 and 100."
       );
       continue;
     }
 
-    if (selectedDimension > MAX_GRID_WIDTH_HEIGHT) {
-      alert(
-        `Too large. Pick a width/height under ${MAX_GRID_WIDTH_HEIGHT} blocks.`
-      );
+    if (gridSize > MAX_GRID_SIZE) {
+      alert(`Too large. Pick a grid size under ${MAX_GRID_SIZE}.`);
       continue;
-    } else if (selectedDimension < MIN_GRID_WIDTH_HEIGHT) {
-      alert(
-        `Too small. Pick a width/height of at least ${MIN_GRID_WIDTH_HEIGHT}.`
-      );
+    } else if (gridSize < MIN_GRID_SIZE) {
+      alert(`Too small. Pick a grid size over ${MIN_GRID_SIZE}.`);
       continue;
-    } else if (!selectedDimension) {
-      return DEFAULT_GRID_WIDTH_HEIGHT;
+    } else if (!gridSize) {
+      return DEFAULT_GRID_SIZE;
     }
-    return selectedDimension;
+    return gridSize;
   }
 }
 
 const gridGenBtn = document.querySelector("#grid-generator");
 gridGenBtn.addEventListener("click", () => {
-  let chosenDimension = getGridDimensions();
+  let chosenDimension = getGridSize();
 
   createGrid(chosenDimension);
 });
