@@ -1,4 +1,5 @@
 const MAX_GRID_WIDTH_HEIGHT = 100;
+const MIN_GRID_WIDTH_HEIGHT = 1;
 const DEFAULT_GRID_WIDTH_HEIGHT = 16;
 
 function createGrid(chosenDimension = 16) {
@@ -27,16 +28,34 @@ function addDrawBehavior(element) {
 function getGridDimensions() {
   while (true) {
     let selectedDimension = prompt(
-      "How many blocks wide and long should the grid be?"
+      "How many blocks wide and long should the grid be?",
+      DEFAULT_GRID_WIDTH_HEIGHT
     );
 
+    // NaN if a non-number is provided
+    selectedDimension = parseInt(selectedDimension);
+
+    if (typeof selectedDimension !== "number" || isNaN(selectedDimension)) {
+      alert(
+        "That is not a valid number. Please pick a number between 1 and 100."
+      );
+      continue;
+    }
+
     if (selectedDimension > MAX_GRID_WIDTH_HEIGHT) {
-      alert("Too large. Pick a width/height under 100 blocks.");
+      alert(
+        `Too large. Pick a width/height under ${MAX_GRID_WIDTH_HEIGHT} blocks.`
+      );
+      continue;
+    } else if (selectedDimension < MIN_GRID_WIDTH_HEIGHT) {
+      alert(
+        `Too small. Pick a width/height of at least ${MIN_GRID_WIDTH_HEIGHT}.`
+      );
       continue;
     } else if (!selectedDimension) {
       return DEFAULT_GRID_WIDTH_HEIGHT;
     }
-    return parseInt(selectedDimension);
+    return selectedDimension;
   }
 }
 
