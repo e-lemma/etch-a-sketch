@@ -7,17 +7,17 @@ const VALID_COLORS = ["red", "green", "blue", "rainbow"];
 const DEFAULT_BACKGROUND = "#ececec";
 const DEFAULT_BORDER = "solid 1px #e5e5e5";
 
-function createGrid(chosenDimension = 16) {
+function createGrid(gridSize = 16) {
   const container = document.querySelector(".container");
 
   // clear container
   container.innerHTML = "";
 
-  for (let i = 0; i < chosenDimension * chosenDimension; i++) {
+  for (let i = 0; i < gridSize * gridSize; i++) {
     const div = document.createElement("div");
     div.classList.add("grid-element");
     div.style.backgroundColor = DEFAULT_BACKGROUND;
-    div.style.width = `calc(100% / ${chosenDimension})`;
+    div.style.width = `calc(100% / ${gridSize})`;
     addDrawBehavior(div, currentColor);
     container.appendChild(div);
   }
@@ -37,6 +37,7 @@ function getColorChoice() {
 
 function addDrawBehavior(element) {
   element.addEventListener("mouseover", (e) => {
+    // Only draw if LMB is held down
     if (e.buttons === 1) {
       if (currentColor === "rainbow") {
         element.style.backgroundColor =
