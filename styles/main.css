@@ -33,12 +33,13 @@ button {
 #buttons {
   display: flex;
   justify-content: center;
+  width: 500px;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-#grid-generator,
-#reset {
+#buttons button {
+  flex: 1;
   font-size: 1rem;
   font-weight: bold;
   color: #333;
@@ -50,15 +51,13 @@ button {
   transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
 }
 
-#grid-generator:hover,
-#reset:hover {
+#buttons button:hover {
   background-color: #d6d6d6;
   color: #222;
   transform: translateY(-2px);
 }
 
-#grid-generator:active,
-#reset:active {
+#buttons button:active {
   background-color: #bfbfbf;
   transform: translateY(0);
 }
