@@ -35,7 +35,7 @@ function getGridSize() {
     // NaN if a non-number is provided
     gridSize = parseInt(gridSize);
 
-    if (typeof gridSize !== "number" || isNaN(gridSize)) {
+    if (isNaN(gridSize)) {
       alert(
         "That is not a valid grid size. Please pick a number between 1 and 100."
       );
